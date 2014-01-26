@@ -1,0 +1,39 @@
+
+#------------------------------------------------------#
+# mkprj - Project Architecture Generator               #
+# https://github.com/tjosseau/mkprj                    #
+_VERSION_: 1.2
+#------------------------------------------------------#
+#   0             skip
+#   false         delete
+#   1 true        file
+#   2 *empty*     folder
+#   > (...)       file with inline content
+#   | (...)       file with block content
+#   @path         copy from mkprj modules
+#   ~path         copy from project root
+#   
+#   !file         delete file before creating it anew
+#------------------------------------------------------#
+
+#### Generic architecture ####
+
+# Dependencies #
+    # Frontend package manager
+bower.json: 0
+bower_components: 0
+    # Server package manager
+package.json: 0
+node_modules: 0
+    # Installation
+!install.sh: |
+    bower install -save jquery
+    npm install -save socket.io
+
+# Documentation #
+README.md: @README.md
+project.todo: @blank.todo
+
+# Index #
+index.html: @index.html     # Client index
+index.js: 1                 # Server index
